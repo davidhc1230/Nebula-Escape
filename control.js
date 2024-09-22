@@ -1,4 +1,4 @@
-// Version: 1.3.1
+// Version: 1.4.0
 
 var canvas = document.getElementById('game-canvas');
 var ctx = canvas.getContext('2d');
@@ -17,6 +17,45 @@ yesButton.addEventListener('click', function() {
     document.getElementById('game-dialog').style.display = 'none'; // Hide the dialog window
     gamePaused = false; // Unpause the game
     gameLoop(); // Start the game loop
+});
+
+// 获取按钮元素
+var btnLeft = document.getElementById('btn-left');
+var btnRight = document.getElementById('btn-right');
+var btnFire = document.getElementById('btn-fire');
+
+// 用于跟踪触摸输入的变量
+var touchLeft = false;
+var touchRight = false;
+
+// 左按钮的触摸事件监听器
+btnLeft.addEventListener('touchstart', function(e) {
+    e.preventDefault();
+    touchLeft = true;
+});
+
+btnLeft.addEventListener('touchend', function(e) {
+    e.preventDefault();
+    touchLeft = false;
+});
+
+// 右按钮的触摸事件监听器
+btnRight.addEventListener('touchstart', function(e) {
+    e.preventDefault();
+    touchRight = true;
+});
+
+btnRight.addEventListener('touchend', function(e) {
+    e.preventDefault();
+    touchRight = false;
+});
+
+// 发射按钮的触摸事件监听器
+btnFire.addEventListener('touchstart', function(e) {
+    e.preventDefault();
+    if (player.hasPowerUp) {
+        fireBullet();
+    }
 });
 
 // Game variables
@@ -79,12 +118,15 @@ function gameLoop() {
     requestAnimationFrame(gameLoop);
 }
 
+
+
+
 function update(deltaTime) {
     // Update player position
-    if (keys[37] && player.x > 0) {
+    if ((keys[37] || touchLeft) && player.x > 0) {
         player.x -= player.speed;
     }
-    if (keys[39] && player.x + player.width < canvas.width) {
+    if ((keys[39] || touchRight) && player.x + player.width < canvas.width) {
         player.x += player.speed;
     }
     
