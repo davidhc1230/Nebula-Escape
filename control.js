@@ -10,19 +10,13 @@ document.getElementById('game-dialog').style.display = 'block';
 var gamePaused = true;
 
 // Get the button elements
-var yesButton = document.getElementById('start-yes');
-var noButton = document.getElementById('start-no');
+var yesButton = document.getElementById('start');
 
-// When the "Yes" button is clicked, start the game
+// When the "Start" button is clicked, start the game
 yesButton.addEventListener('click', function() {
     document.getElementById('game-dialog').style.display = 'none'; // Hide the dialog window
     gamePaused = false; // Unpause the game
     gameLoop(); // Start the game loop
-});
-
-// When the "No" button is clicked, close the webpage
-noButton.addEventListener('click', function() {
-    window.close(); // Close the webpage (Note: some browsers may block this action)
 });
 
 // Game variables
