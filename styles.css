@@ -54,6 +54,35 @@ body {
     background-color: #333;
 }
 
+#touch-controls {
+    width: 100%;
+    max-width: 500px; /* 与游戏区域宽度一致 */
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+}
+
+.control-button {
+    width: 30%;
+    height: 60px;
+    font-size: 24px;
+    border: 2px solid black;
+    background-color: #ddd;
+    border-radius: 10px;
+}
+
+.control-button:active {
+    background-color: #bbb;
+}
+
+@media (max-width: 600px) {
+    .control-button {
+        height: 50px;
+        font-size: 18px;
+    }
+}
+
 #restart-box {
     position: absolute;
     width: 300px;
